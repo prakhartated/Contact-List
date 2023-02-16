@@ -1,11 +1,18 @@
+//require the library
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://0.0.0.0:27017/contacts_list_db');
 
-mongoose.set('strictQuery', true);
+//connect to the database
+mongoose.connect('mongodb://0.0.0.0/contact_list_db');
 
-
+//acquire the connection(to check if it's successful)
 const db = mongoose.connection;
-db.on('error' , console.error.bind(console , 'error connecting to db'));
-db.once('open' , function () {
-    console.log('Successfuly connected to db');
+
+//error
+db.on('error', function(err) { console.log(err.message); });
+
+//up and running then print the message
+db.once('open', function() {
+  
+    console.log("Successfully connected to the database");
+
 });
